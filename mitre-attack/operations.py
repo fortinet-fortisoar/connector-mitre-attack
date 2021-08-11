@@ -156,7 +156,7 @@ def get_mitre_data(config, params):
         return 'Success! Upserted {} records and {} relationships'.format(records_len, relationships_len)
 
 
-def get_mitre_data_dummy(config, params):
+def get_mitre_data_sample(config, params):
     example_technique = '''{
             "id": "attack-pattern--9e80ddfb-ce32-4961-a778-ca6a10cfae72",
             "name": "Sudo",
@@ -381,5 +381,5 @@ def get_mitre_data_dummy(config, params):
 
 operations = {
     'get_mitre_data': get_mitre_data,
-    'get_mitre_data_dummy': get_mitre_data_dummy
+    'get_mitre_data_sample': get_mitre_data_sample
 }

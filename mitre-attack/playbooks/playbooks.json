@@ -70,7 +70,7 @@
             },
             {
               "@type": "WorkflowStep",
-              "name": "Get Dummy Data",
+              "name": "Get Sample Data",
               "description": null,
               "arguments": {
                 "name": "MITRE ATT&CK",
@@ -78,8 +78,8 @@
                 "params": [],
                 "version": "2.0.0",
                 "connector": "mitre-attack",
-                "operation": "get_mitre_data_dummy",
-                "operationTitle": "Get MITRE Dummy Data",
+                "operation": "get_mitre_data_sample",
+                "operationTitle": "Get MITRE Sample Data",
                 "pickFromTenant": false,
                 "step_variables": []
               },
@@ -94,7 +94,7 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Configuration -> Get Dummy Data",
+              "name": "Configuration -> Get Sample Data",
               "targetStep": "/api/3/workflow_steps/df3dca29-18cd-44a4-ae23-c3cc653605b6",
               "sourceStep": "/api/3/workflow_steps/e9f4944d-00e1-44b2-be9b-1dfad614fac7",
               "label": null,

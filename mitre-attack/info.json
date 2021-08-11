@@ -118,10 +118,10 @@
       "enabled": true
     },
     {
-      "description": "Ingest dummy data from MITRE",
-      "operation": "get_mitre_data_dummy",
-      "annotation": "get_mitre_data_dummy",
-      "title": "Get MITRE Dummy Data",
+      "description": "Ingest sample data from MITRE",
+      "operation": "get_mitre_data_sample",
+      "annotation": "get_mitre_data_sample",
+      "title": "Get MITRE Sample Data",
       "parameters": [],
       "output_schema": [],
       "enabled": true
