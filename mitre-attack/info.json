@@ -15,7 +15,64 @@
     "scheduled"
   ],
   "configuration": {
-    "fields": []
+    "fields": [
+      {
+        "title": "Upload JSON Manually",
+        "name": "upload_json",
+        "visible": true,
+        "editable": true,
+        "required": false,
+        "type": "checkbox",
+        "value": false,
+        "tooltip": "You can choose to provide the MITRE datasets manually via a file selector if you don't have access to GitHub or have no connection to the Internet",
+        "onchange": {
+          "true": [
+            {
+              "title": "Enterprise ATT&CK JSON",
+              "name": "enterprise_json",
+              "visible": true,
+              "editable": true,
+              "required": false,
+              "type": "file"
+            },
+            {
+              "title": "Mobile ATT&CK JSON",
+              "name": "mobile_json",
+              "visible": true,
+              "editable": true,
+              "required": false,
+              "type": "file"
+            },
+            {
+              "title": "ICS ATT&CK JSON",
+              "name": "ics_json",
+              "visible": true,
+              "editable": true,
+              "required": false,
+              "type": "file"
+            }
+          ],
+          "false": [
+            {
+              "title": "Matrices",
+              "name": "matrices",
+              "visible": true,
+              "editable": true,
+              "required": true,
+              "type": "multiselect",
+              "options": [
+                "Enterprise",
+                "Mobile",
+                "ICS"
+              ],
+              "value": [
+                "Enterprise"
+              ]
+            }
+          ]
+        }
+      }
+    ]
   },
   "operations": [
     {
@@ -24,62 +81,6 @@
       "annotation": "get_mitre_data",
       "title": "Get MITRE Data",
       "parameters": [
-        {
-          "title": "Upload JSON Manually",
-          "name": "upload_json",
-          "visible": true,
-          "editable": true,
-          "required": false,
-          "type": "checkbox",
-          "value": false,
-          "tooltip": "You can choose to provide the MITRE datasets manually via a file selector if you don't have access to GitHub or have no connection to the Internet",
-          "onchange": {
-            "true": [
-              {
-                "title": "Enterprise ATT&CK JSON",
-                "name": "enterprise_json",
-                "visible": true,
-                "editable": true,
-                "required": false,
-                "type": "file"
-              },
-              {
-                "title": "Mobile ATT&CK JSON",
-                "name": "mobile_json",
-                "visible": true,
-                "editable": true,
-                "required": false,
-                "type": "file"
-              },
-              {
-                "title": "ICS ATT&CK JSON",
-                "name": "ics_json",
-                "visible": true,
-                "editable": true,
-                "required": false,
-                "type": "file"
-              }
-            ],
-            "false": [
-              {
-                "title": "Matrices",
-                "name": "matrices",
-                "visible": true,
-                "editable": true,
-                "required": true,
-                "type": "multiselect",
-                "options": [
-                  "Enterprise",
-                  "Mobile",
-                  "ICS"
-                ],
-                "value": [
-                  "Enterprise"
-                ]
-              }
-            ]
-          }
-        },
         {
           "title": "Modules",
           "name": "modules",

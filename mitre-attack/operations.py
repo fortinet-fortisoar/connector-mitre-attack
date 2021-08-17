@@ -16,15 +16,15 @@ def get_mitre_data(config, params):
     response_enterprise = {'objects': []}
     response_mobile = {'objects': []}
     response_ics = {'objects': []}
-    if params.get('upload_json'):
-        if params.get('enterprise_json'):
-            response_enterprise = get_file_content(params.get('enterprise_json'))
-        if params.get('mobile_json'):
-            response_mobile = get_file_content(params.get('mobile_json'))
-        if params.get('ics_json'):
-            response_ics = get_file_content(params.get('ics_json'))
+    if config.get('upload_json'):
+        if config.get('enterprise_json'):
+            response_enterprise = get_file_content(config.get('enterprise_json'))
+        if config.get('mobile_json'):
+            response_mobile = get_file_content(config.get('mobile_json'))
+        if config.get('ics_json'):
+            response_ics = get_file_content(config.get('ics_json'))
     else:
-        for matrix in params.get('matrices'):
+        for matrix in config.get('matrices'):
             if matrix == 'Enterprise':
                 response_enterprise = requests.get('https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/enterprise-attack/enterprise-attack.json').json()
             if matrix == 'Mobile':
@@ -52,11 +52,13 @@ def get_mitre_data(config, params):
     relationships_filter = [Filter('type', '=', 'relationship')]
 
     mitre_collections = query_source(mem_source, collections_filter)
-    try:
-        mitre_version = mitre_collections[0]['x_mitre_version']
-    except IndexError:
-        raise ConnectorError('The connector did not ingest any data from MITRE. '
-                             'Please make sure you have at least one file selected for ingestion')
+    mitre_version = mitre_collections[0]['x_mitre_version']
+    # we don't need this anymore since health check handles if file upload exists
+    # try:
+    #     mitre_version = mitre_collections[0]['x_mitre_version']
+    # except IndexError:
+    #     raise ConnectorError('The connector did not ingest any data from MITRE. '
+    #                          'Please make sure you have at least one file selected for ingestion')
 
     mitre_version_response = get_mitre_version()
     if len(mitre_version_response['hydra:member']) > 0:
@@ -149,7 +151,7 @@ def get_mitre_data(config, params):
         error_flag = True
 
     if error_flag:
-        return 'Partial success. Upserted {} records and {} relationships. There are missing relationships between' \
+        return 'Partial success. Upserted {} records and {} relationships. There are missing relationships between ' \
                'modules and they cannot be added until all modules are ingested first'.format(records_len,
                                                                                               relationships_len)
     else:
