@@ -189,7 +189,7 @@ def update_mitre_version(variable_id, version):
                         body={'name': 'mitre_version', 'value': version})
 
 
-def get_mitre_modules():
+def get_mitre_modules(config):
     module_names = [
         'mitre_tactics',
         'mitre_groups',
@@ -211,6 +211,10 @@ def get_mitre_modules():
         raise ConnectorError('The following modules are missing from the environment: '
                              '{}'.format(', '.join(modules_not_exist)))
     else:
+        if config.get('upload_json'):
+            if not config.get('enterprise_json') and not config.get('mobile_json') and not config.get('ics_json'):
+                raise ConnectorError('It looks like you saved the connector configuration without uploading a file. '
+                                     'Please upload at least one file and try again')
         return True
 
 

@@ -16,4 +16,4 @@ class Mitre(Connector):
             raise ConnectorError(e)
 
     def check_health(self, config):
-        return get_mitre_modules()
+        return get_mitre_modules(config=config)
