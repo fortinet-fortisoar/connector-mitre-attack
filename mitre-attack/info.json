@@ -9,7 +9,7 @@
   "category": "Information",
   "icon_small_name": "attack_small.png",
   "icon_large_name": "attack_large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.0/mitre-att-ck/149/mitre-att-amp-ck-v2-0-0",
   "ingestion_supported": true,
   "ingestion_modes": [
     "scheduled"
