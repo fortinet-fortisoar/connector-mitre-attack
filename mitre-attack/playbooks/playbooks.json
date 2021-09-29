@@ -401,7 +401,7 @@
           "name": "MITRE ATT&CK > Ingest",
           "aliasName": null,
           "tag": "#mitre-attack #dataingestion",
-          "description": "Ingests lates data from MITRE as part of the ingestion wizard process",
+          "description": "Ingests latest data from MITRE as part of the ingestion wizard process",
           "isActive": false,
           "singleRecordExecution": false,
           "remoteExecutableFlag": false,
