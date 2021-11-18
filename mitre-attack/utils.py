@@ -185,7 +185,7 @@ def create_mitre_version(version):
 
 
 def update_mitre_version(variable_id, version):
-    return make_request('/api/wf/api/dynamic-variable/{}'.format(variable_id), 'PUT',
+    return make_request('/api/wf/api/dynamic-variable/{}/'.format(variable_id), 'PUT',
                         body={'name': 'mitre_version', 'value': version})
 
 
