@@ -1,7 +1,7 @@
 {
   "name": "mitre-attack",
   "label": "MITRE ATT&CK",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "The MITRE ATT&CK knowledge base is used as a foundation for the development of specific threat models and methodologies. Connector helps to replicate knowledge base of adversary tactics and techniques based on real-world observations",
   "publisher": "Fortinet",
   "cs_approved": false,
