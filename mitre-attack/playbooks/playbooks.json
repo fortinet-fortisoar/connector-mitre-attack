@@ -4,7 +4,7 @@
     {
       "@context": "/api/3/contexts/WorkflowCollection",
       "@type": "WorkflowCollection",
-      "name": "Sample - MITRE ATT&CK - 2.0.0",
+      "name": "Sample - MITRE ATT&CK - 2.0.1",
       "description": "Sample playbooks for \"MITRE ATT&CK\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
       "image": "attack_small.png",
@@ -71,7 +71,7 @@
                 "name": "MITRE ATT&CK",
                 "config": "3e40e5e5-08e5-4b7e-a8a2-b98f5ad53b5c",
                 "params": [],
-                "version": "2.0.0",
+                "version": "2.0.1",
                 "connector": "mitre-attack",
                 "operation": "get_mitre_data_sample",
                 "operationTitle": "Get MITRE Sample Data",
@@ -251,7 +251,7 @@
                   "upload_json": false,
                   "force_ingestion": ""
                 },
-                "version": "2.0.0",
+                "version": "2.0.1",
                 "connector": "mitre-attack",
                 "operation": "get_mitre_data",
                 "operationTitle": "Get MITRE Data",
@@ -467,7 +467,7 @@
                   "upload_json": false,
                   "force_ingestion": ""
                 },
-                "version": "2.0.0",
+                "version": "2.0.1",
                 "connector": "mitre-attack",
                 "operation": "get_mitre_data",
                 "operationTitle": "Get MITRE Data",
