@@ -45,8 +45,6 @@ def get_mitre_data(config, params):
     tactics_filter = [Filter('type', '=', 'x-mitre-tactic')]
     groups_filter = [Filter('type', '=', 'intrusion-set')]
     techniques_all_filter = [Filter('type', '=', 'attack-pattern')]
-    # techniques_filter = [Filter('type', '=', 'attack-pattern'), Filter('x_mitre_is_subtechnique', '=', False)]
-    # sub_techniques_filter = [Filter('type', '=', 'attack-pattern'), Filter('x_mitre_is_subtechnique', '=', True)]
     mitigations_filter = [Filter('type', '=', 'course-of-action')]
     malware_filter = [Filter('type', '=', 'malware')]
     tools_filter = [Filter('type', '=', 'tool')]
@@ -75,8 +73,6 @@ def get_mitre_data(config, params):
             tactics = query_source(mem_source, tactics_filter)
             groups = query_source(mem_source, groups_filter)
             techniques_all = query_source(mem_source, techniques_all_filter)
-            # techniques = query_source(mem_source, techniques_filter)
-            # sub_techniques = query_source(mem_source, sub_techniques_filter)
             mitigations = query_source(mem_source, mitigations_filter)
             software_malware = query_source(mem_source, malware_filter)
             software_tools = query_source(mem_source, tools_filter)
@@ -88,8 +84,6 @@ def get_mitre_data(config, params):
             tactics = query_source(mem_source, tactics_filter + date_filter)
             groups = query_source(mem_source, groups_filter + date_filter)
             techniques_all = query_source(mem_source, techniques_all_filter + date_filter)
-            # techniques = query_source(mem_source, techniques_filter + date_filter)
-            # sub_techniques = query_source(mem_source, sub_techniques_filter + date_filter)
             mitigations = query_source(mem_source, mitigations_filter + date_filter)
             software_malware = query_source(mem_source, malware_filter + date_filter)
             software_tools = query_source(mem_source, tools_filter + date_filter)
@@ -103,8 +97,6 @@ def get_mitre_data(config, params):
         tactics = query_source(mem_source, tactics_filter)
         groups = query_source(mem_source, groups_filter)
         techniques_all = query_source(mem_source, techniques_all_filter)
-        # techniques = query_source(mem_source, techniques_filter)
-        # sub_techniques = query_source(mem_source, sub_techniques_filter)
         mitigations = query_source(mem_source, mitigations_filter)
         software_malware = query_source(mem_source, malware_filter)
         software_tools = query_source(mem_source, tools_filter)
