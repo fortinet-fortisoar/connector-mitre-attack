@@ -42,6 +42,25 @@ def query_source(memory_source, query_filter):
     return result
 
 
+def filter_techniques(techniques_all):
+    # Sometimes techniques do not have the 'x_mitre_is_subtechnique' key that determines if they are subtechniques or not
+    # These are actually still techniques but get dropped by our filters.
+    # This function finds such techniques adds them back into our result
+    techniques = []
+    sub_techniques = []
+
+    for technique in techniques_all:
+        if 'x_mitre_is_subtechnique' not in technique:
+            techniques.append(technique)
+        else:
+            if technique['x_mitre_is_subtechnique']:
+                sub_techniques.append(technique)
+            else:
+                techniques.append(technique)
+
+    return techniques, sub_techniques
+
+
 def parse_datetime(value):
     if isinstance(value, str):
         value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%fZ')

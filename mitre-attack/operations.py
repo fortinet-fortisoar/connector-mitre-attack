@@ -5,7 +5,7 @@ from stix2 import Filter, MemorySource
 
 from connectors.core.connector import get_logger, ConnectorError
 from .utils import query_source, generate_records, create_relationships, link_techniques_to_tactics
-from .utils import remove_rev_dep_relationships, remove_rev_dep_list_only
+from .utils import remove_rev_dep_relationships, remove_rev_dep_list_only, filter_techniques
 from .utils import get_mitre_version, create_mitre_version, update_mitre_version
 from .utils import get_file_content
 
@@ -44,8 +44,7 @@ def get_mitre_data(config, params):
     date_filter = [Filter('modified', '>=', '{}{}'.format(arrow.utcnow().shift(months=-4).format('YYYY-MM-DDTHH:mm:ss.SSS'), 'Z'))]
     tactics_filter = [Filter('type', '=', 'x-mitre-tactic')]
     groups_filter = [Filter('type', '=', 'intrusion-set')]
-    techniques_filter = [Filter('type', '=', 'attack-pattern'), Filter('x_mitre_is_subtechnique', '=', False)]
-    sub_techniques_filter = [Filter('type', '=', 'attack-pattern'), Filter('x_mitre_is_subtechnique', '=', True)]
+    techniques_all_filter = [Filter('type', '=', 'attack-pattern')]
     mitigations_filter = [Filter('type', '=', 'course-of-action')]
     malware_filter = [Filter('type', '=', 'malware')]
     tools_filter = [Filter('type', '=', 'tool')]
@@ -73,8 +72,7 @@ def get_mitre_data(config, params):
             create_mitre_version(mitre_version)
             tactics = query_source(mem_source, tactics_filter)
             groups = query_source(mem_source, groups_filter)
-            techniques = query_source(mem_source, techniques_filter)
-            sub_techniques = query_source(mem_source, sub_techniques_filter)
+            techniques_all = query_source(mem_source, techniques_all_filter)
             mitigations = query_source(mem_source, mitigations_filter)
             software_malware = query_source(mem_source, malware_filter)
             software_tools = query_source(mem_source, tools_filter)
@@ -85,8 +83,7 @@ def get_mitre_data(config, params):
             update_mitre_version(mitre_version_response['hydra:member'][0]['id'], mitre_version)
             tactics = query_source(mem_source, tactics_filter + date_filter)
             groups = query_source(mem_source, groups_filter + date_filter)
-            techniques = query_source(mem_source, techniques_filter + date_filter)
-            sub_techniques = query_source(mem_source, sub_techniques_filter + date_filter)
+            techniques_all = query_source(mem_source, techniques_all_filter + date_filter)
             mitigations = query_source(mem_source, mitigations_filter + date_filter)
             software_malware = query_source(mem_source, malware_filter + date_filter)
             software_tools = query_source(mem_source, tools_filter + date_filter)
@@ -99,12 +96,13 @@ def get_mitre_data(config, params):
         # force ingest, disregard version
         tactics = query_source(mem_source, tactics_filter)
         groups = query_source(mem_source, groups_filter)
-        techniques = query_source(mem_source, techniques_filter)
-        sub_techniques = query_source(mem_source, sub_techniques_filter)
+        techniques_all = query_source(mem_source, techniques_all_filter)
         mitigations = query_source(mem_source, mitigations_filter)
         software_malware = query_source(mem_source, malware_filter)
         software_tools = query_source(mem_source, tools_filter)
         relationships = query_source(mem_source, relationships_filter)
+
+    techniques, sub_techniques = filter_techniques(techniques_all)
 
     tactics_ids = remove_rev_dep_list_only(tactics)
     groups_ids = remove_rev_dep_list_only(groups)
